@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+
+@import "tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  transition: background-color 0.3s, color 0.3s;
+}
+* {
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}

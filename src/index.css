@@ -1,0 +1,26 @@
+/* ── index.css ── */
+
+/* 1️⃣ Google Fonts import — must appear before any other rules so PostCSS doesn't complain */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* 2️⃣ Tailwind and Flowbite plugin imports must come next */
+@import "tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
+
+/* 3️⃣ Flowbite source file */
+@source "../.flowbite-react/class-list.json";
+
+/* 4️⃣ Tailwind v4: Configure dark mode to use .dark class on any ancestor */
+@variant dark (&:where(.dark, .dark *));
+
+/* 5️⃣ Custom CSS variables (optional) */
+:root {
+  --primary-900: #233876;
+}
+
+/* 6️⃣ Tailwind custom utilities */
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+}

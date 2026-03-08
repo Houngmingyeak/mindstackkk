@@ -1,0 +1,73 @@
+import { FaRegEye, FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
+
+function ChatIcon() {
+  return <IoChatboxEllipsesOutline />;
+}
+
+function EyeIcon() {
+  return <FaRegEye />;
+}
+
+export default function QuestionCard({ question, isBookmarked, onToggleBookmark }) {
+  if (!question) return null;
+
+  const { author = {}, comments = 0, views = 0, time = "", id } = question;
+
+  return (
+    <Link to={`/question/${id}`}>
+      <div
+        className="relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 
+                   rounded-lg px-5 py-4 hover:border-gray-300 dark:hover:border-gray-600 
+                   hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer"
+      >
+      
+
+        {/* Title */}
+        <h3 className="text-[18px] font-bold text-gray-900 dark:text-white hover:text-blue-600 
+                       dark:hover:text-blue-400 transition-colors leading-snug mb-1.5 pr-8">
+          {question.title}
+        </h3>
+
+        {/* Excerpt */}
+        <p className="text-[16px] text-gray-500 dark:text-gray-400 leading-relaxed mb-3 line-clamp-1">
+          {question.excerpt}
+        </p>
+
+        {/* Tags */}
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
+          {question.tags.map((tag) => (
+            <span key={tag}
+              className="px-2.5 py-0.5 rounded-full text-[13px] font-medium 
+                         bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 
+                         border border-blue-100 dark:border-blue-800">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Footer */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className={`w-6 h-6 rounded-full ${author.color || "bg-gray-400"} 
+                             flex items-center justify-center text-[13px] font-bold text-white shrink-0`}>
+              {author.initials || "?"}
+            </span>
+            <span className="text-[14px] text-gray-600 dark:text-gray-300 font-medium">
+              {author.name || "Unknown"}
+            </span>
+          </div>
+          <div className="flex items-center gap-4 text-gray-400 dark:text-gray-500 text-[14px]">
+            <span className="flex items-center gap-1"><ChatIcon />{comments}</span>
+            <span className="flex items-center gap-1">
+              <EyeIcon />
+              {typeof views === "number" ? views.toLocaleString() : views}
+            </span>
+            <span>{time}</span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
